@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    
+    <form action="#">
+        <input type="text">
+        <input type="text" style="display: none">
+
+        <hr>
+
+        <input type="radio" name="gender" value="f">남성
+        <input type="radio" name="gender" value="f">여성
+
+        <hr>
+
+        <input type="checkbox" name="fav" value="book">책읽기
+        <input type="checkbox" name="fav" value="tour">여행
+        <input type="checkbox" name="fav" value="game">게임
+    </form>
+
+    <hr>
+    
+    <button type="button" onclick="findHideTag()">안보이는 태그 찾기</button>
+    <button type="button" onclick="showGender()">사용자가 선택한 성별</button>
+    <button type="button" onclick="selectedFavorite()">취미</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        function selectedFavorite() {
+            // 취미를 선택할 수 있는 checkbox들을 불러온다
+            let $inputTags = $("input[type=checkbox]");
+            let $first = $inputTags.eq(0);
+            let $second = $inputTags.eq(1);
+            let $third = $inputTags.eq(2);
+            // 사용자가 선택한 취미
+            // ex) 사용자가 책읽기와 게임을 선택했을 경우
+            // selected에는 책읽기, 게임이 들어있음
+            let selected = "";
+
+            // 첫 번째 취미를 선택했다면
+            if($first.is(":checked")) {
+                // selected 변수에 첫 번째 취미명 저장
+                
+                selected = selected + ",책읽기";
+            }
+            // 두 번째 취미를 선택했다면
+            if($second.is(":checked")){
+            // selected 변수에 두 번째 취미명 저장
+                selected = selected + ",여행";
+            }
+
+            // 세 번째 취미를 선택했다면
+            if($third.is(":checked")) {
+            // selected 변수에 세 번째 취미명 저장
+                selected = selected + ",게임";
+            }
+
+            selected = selected.substring(1, selected.length);
+            // 사용자가 선택한 취미명들 출력
+            // 현재 문제 -> 취미명 앞에 , 가 출력되고 있음
+            // 취미명 앞에 , 가 출력되지 않게 수정하세요.
+            alert(selected);
+        }
+
+
+        function showGender() {
+            // 지금 우리가 구성한 태그를 그대로 사용해서
+            // 라디오버튼을 불러오세요
+
+            // let $inputTags = $("form input");
+            // let $maleInputTag = $inputTags[2];
+            // let $femaleInputTag = $inputTags[3];
+
+            // input 태그의 type 속성을 사용해서 라디오버튼들을 불러오세요.
+            let $inputTags = $("input[type=radio]");
+            let $maleInputTag = $inputTags.eq(0);
+            let $femaleInputTag = $inputTags.eq(1);
+            
+            if($maleInputTag.is(":checked")) {
+                // 사용자가 남성을 선택했다면
+                // 남성입니다 를 출력
+                alert("남성입니다.");
+            } else if($femaleInputTag.is(":checked")) {
+                // 사용자가 여성을 선택했다면
+                // 여성입니다 를 출력
+                alert("여성입니다.");
+            } else {
+                alert("성별을 선택하세요.")
+            }
+                         
+        }
+        function findHideTag() {
+            let $inputTags = $("input");
+
+            for(let i=0; i<$inputTags.length; i++) {
+                let $nthInput = $inputTags.eq(i);
+
+                // display: none 또는 visibility: hidden 을 사용해서
+                // 태그를 숨겼을 때 그 여부를 알 수 있음 
+                if($nthInput.is(":hidden")) {
+                    alert((i+1) + "번째 input은 보이지 않습니다.");
+                }
+            }
+        }
+    </script>
+</body>
+</html> 
