@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    <a href="https://www.naver.com" id="naver">네이버로 이동</a>
+    <a href="https://www.google.co.kr" id="google">구글로 이동</a>
+    <a href="https://www.daum.net" id="daum">다음으로 이동</a>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        function alertHref(id) {
+            let $a = $("#" + id);
+            let href = $a.attr("href");
+
+            alert("href = " + href);
+        }
+        $("#naver").on("click", function() {
+            // this -> 현재 이벤트가 발생한 태그의 DOM
+            console.log(this);
+            $(this);
+
+            alertHref("naver");
+            
+            return false;
+        });
+
+        $("#google").on("click", function() {
+            console.log(this);
+            
+            alertHref("google");
+            
+            return false;
+        });
+
+        $("#daum").on("click", function() {
+            console.log(this);
+            
+            alertHref("daum");
+            
+            return false;
+        });
+    </script>
+</body>
+</html>
