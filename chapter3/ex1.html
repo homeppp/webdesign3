@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+    <style>
+        .bg {
+            width: 300px;
+            height: 300px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button type="button" class="hide">hide()</button>
+        <button type="button" class="show">show()</button>
+        <button type="button" class="slideup">slideUp()</button>
+        <button type="button" class="slidedown">slideDown()</button>
+        <button type="button" class="slidetoggle">slideToggle()</button>
+    </div>
+
+    <div class="bg" isShow="true"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        // 전역 변수 isShow를 사용해서 태그의 상태를 기록
+        // 태그가 보인다 / 안보인다 -> 두 가지 상태를 표현할 때는 boolean 타입의 값을 사용
+        // 태그를 클릭했다 / 클릭하지 않았다
+        // 태그에 마우스를 올렸다 / 올리지 않았다
+        // let isShow = true;
+
+        $(".slidetoggle").on("click", function() {
+            $(".bg").slideToggle(2000, "swing", function() {
+                let isShow = $(".bg").attr("isShow");
+                isShow = isShow ==="true";
+
+                if(isShow) {
+                    alert("사라짐!");
+                } else {
+                    alert("나타남!");
+                }
+
+                $(".bg").attr("isShow", !isShow);
+
+                // isShow = !isShow;
+                
+                // // if(isShow) {
+                // //     isShow = false;
+                // // } else {
+                // //     isShow = true;
+                // // }
+
+                // if(isShow) {
+                //     alert("나타남!");
+                // } else {
+                //     alert("사라짐!");
+                // }
+                // let display = $(".bg").css("display");
+
+                // if(display == "none") {
+                //     alert("사라짐!");
+                // } 
+                // if(display =="block") {
+                //     alert("나타남!");
+                // }
+            });
+        })
+
+        $(".hide").on("click", function() {
+            $(".bg").hide();
+        });
+
+        $(".show").on("click", function() {
+            $(".bg").show();
+        });
+
+        $(".slideup").on("click", function() {
+            // 첫 번째 인자 -> 적용 시간 / 적용시간은 밀리초 단위로 지정
+            // 두 번째 인자 -> 진행 가속도 / easing, 효과가 적용된 시간에 가속도를 설정
+            // 진행 가속도를 적용할 때는 경우에 따라서 jquery뿐만 아니라 jqueryUI 등 다른 JS 라이브러리를 추가해야 할 수도 있음
+            // 세 번째 인자 -> 효과가 모두 적용되고 나서 / 효과가 끝나고 실행할 코드
+            $(".bg").slideUp(3000, "swing", function() {
+                alert("slideUp 끝!");
+            });
+        });
+
+        $(".slidedown").on("click", function() {
+            $(".bg").slideDown();
+        });
+    </script>
+</body>
+</html>

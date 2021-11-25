@@ -44,9 +44,13 @@
             if(value == "") {
                 // 직접 입력을 선택했을 때
                 $("#domain").removeAttr("disabled");
+                $("#domain").val("");
+                $("#domain").focus();
             } else {
                 // 직접 입력이 아닌 네이버, 구글, 다음 등 선택했을 때
+                $("#domain").prop("disabled", true);
                 $("#domain").val(value);
+               
             }
             
         });
