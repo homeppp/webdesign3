@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    <div>
+        <form action="#">
+            <input type="text" id="id" placeholder="아이디">
+            <input type="password" id="pw" placeholder="비밀번호">
+            <!-- 아이디 기억하기 - 로그인에 성공했을 때 해당 아이디를 기억하는 기능
+                 로그인에 실패했을 때는 아이디를 기억하지 않음 
+                 ajax를 배우지 않았으니까 단순하게 아이디 기억하기를 누르면 입력한 아이디를 기억한다.-->
+            <!-- 아이디 기억하기 하는 이유 - 다시 그 페이지에 들어갔을 때 아이디를 입력하지 않고 기억해둔 아이디가 자동으로 입력되도록 하기 위해 -->
+            <input type="checkbox" id="saveId"> 아이디 기억하기
+            <input type="submit" value="로그인">
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $("#saveId").on("click", function() {
+            // 입력한 아이디를 기억한다.
+            // 쿠키를 활용해야함
+
+            // 1. 사용자가 입력한 아이디를 가져온다.
+            let id = $("#id").val();
+            // 2. 가져온 사용자가 입력한 아이디를 이름이 id인 쿠키에 저장한다.
+            // 쿠키 유지시간을 지정하지 않으면 브라우저의 기본설정에 따라서 바뀜
+            // 기본설정은 대부분 브라우저를 닫기 전까지로 유지시간이 설정되어있음
+            // 유지시간이라고 하는 건 사용자가 해당 사이트에 유지시간동안 쭉 접소하지 않았을 때 임
+            // 유지시간 중 한 번이라도 접속하면 다시 초기화됨
+            // 쿠키는 브라우저의 설정을 따라가는 기술이기 때문에 
+            // 브라우저에서 쿠키 ㅏ용하지 않음 또는 쿠키를 핸들링하면
+            // 그 영향을 받아서 쿠키가 유지기간이 만료되기 전에 사라질 수 있음
+            $.cookie("id", id, {expire: 7, path: "/"});
+        });
+        // $.cookie("이름", "값") -> 이름이 "이름"인 쿠키에 "값"을 저장
+        $.cookie("info", "hello");
+        // 이름이 inofo인 쿠키에 hello를 저장하는데
+        // 유지기간이 3일이다. // 3일 뒤에는 이름이 info인 쿠키가 삭제됨
+        $.cookie("info", "hello", {expire: 3, path: "/"});
+
+        // 이름이 login인 쿠키에 true 값을 저장
+        // 사용자가 login을 했따 라는 의미로 사용할 수 있음
+        // 사용자가 로그인한 상태다 라고 쿠키에 기록
+        $.cookie("login", "true");
+        // 사용자가 장바구니에 바지 상품을 담은 상태다 라고 쿠키에 기록
+        $.cookie("cart", "pants");
+
+        // 캐시와 쿠키는 유지기간이 있음
+        // 음식의 유통기한처럼 캐시와 쿠키에 유지기간을 설정해두면
+        // 유지기간이 지나면 캐시와 쿠키가 사라짐
+    </script>
+</body>
+</html>

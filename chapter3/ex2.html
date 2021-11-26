@@ -26,10 +26,34 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
+        /*
+        $(".box").animate({marginTop: "50px"}, 1000, "swing", function() {
+            alert("애니메이션 끝!")
+        });
+        
+
         $("#shiftRight").on("click", function() {
             $(".box").animate({marginLeft: "50px"}, 1000, function() {
                 $(".box").animate({marginTop: "50px"}, 1000);
             });
+        });
+        */
+
+        $("#shiftRight").on("click", function() {
+            // 하나의 태그에 animate 메서드를 여러번 사용하면
+            // Queue 라는 공간에 animate 메서드가 순서대로 저장
+            // 컴퓨터가 Queue 공간에 들어있는 특정 태그의 animate 메서드를 차례대로 불러와서 동작하도록 함
+            // 이 때, 불러온 animate 메서드의 동작이 끝나야 다음 animate 메서드를 불러옴
+            $(".box").animate({marginLeft: "50px"}, 1000).animate({marginTop:"50px"}, 1000);
+            
+            setTimeout(function () {
+                // stop 메서드는 중간에 animate를 끊고 싶을 때 사용
+                $(".box").stop();
+            }, 500);
+        });
+
+        $("#moveEnd").on("click", function() {
+            $("html").animate({scrollTop: 2000}, 2000);
         });
     </script>
 </body>
