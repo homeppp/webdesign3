@@ -34,23 +34,43 @@
 
         console.log(info);
 
-        let latter = {
+        let latter = [{
             "number": 997,
             "title": "2021년 제2회 추가경정예산 고시",
             "department": "기획감사실",
             "createDate": "2021-11-30",
             "viewCount": 1
-        };
+        }, {
+            "number": 996,
+            "title": "2022년 상반기 재활용 선별장 기간제 근로자 채용 공고",
+            "department": "청소행정과",
+            "createDate": "2021-12-01",
+            "viewCount": 3
+        }, {
+            "number": 995,
+            "title": "2022년 상반기 서구취업정보센터 구인구직개척단 채용 공고",
+            "department": "복지정책과",
+            "createDate": "2021-12-01",
+            "viewCount": 60
+        }];
 
-        $("table tbody").append(
-            "<tr>" + 
-                "<td>" + latter["number"] + "</td>" + 
-                "<td>" + latter["title"] + "</td>" + 
-                "<td>" + latter["department"] + "</td>" +
-                "<td>" + latter["createDate"] + "</td>" +
-                "<td>" + latter["viewCount"] + "</td>" +
-            "</tr>"
+        console.log(latter);
+
+        // for문을 사용해서 배열에 들어있는 JSON(정보)를 table에 출력하세요.
+        for(let i=0; i<latter.length; i++) {
+            let latterIndex = latter[i];
+
+            $("table tbody").append(
+                "<tr>" + 
+                    "<td>" + latterIndex["number"] + "</td>" + 
+                    "<td>" + latterIndex["title"] + "</td>" + 
+                    "<td>" + latterIndex["department"] + "</td>" +
+                    "<td>" + latterIndex["createDate"] + "</td>" +
+                    "<td>" + latterIndex["viewCount"] + "</td>" +
+                "</tr>"
         );
+        }
+        
 
     </script>
 </body>

@@ -10,6 +10,8 @@ java 다운
 
 프로젝트 생성
 
+html 파일 만들 때 ctrl+n -> html -> 이름 -> next
+
 help - 이클립스 마켓플레이스 - dark theme
 
 window - reference - dark 검색 dark모드변경
